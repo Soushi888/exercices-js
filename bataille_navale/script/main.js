@@ -1,0 +1,1 @@
+batnav = new Batnav();
