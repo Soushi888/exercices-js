@@ -1,19 +1,25 @@
 "use strict";
 
+/**
+ * Composante : Panneau latérale
+ */
 class Panel {
-  host;
-
-  constructor(host) {
-    // Récupère l'élément associer à l'id host
-    this.host = host;
-    // console.log(host);
+  /**
+   * Construit un panneau
+   * @param {HTMLElement} host Élément hôte qui acceuil le panneau
+   * @param {String} bgColor Couleur de fond du panneau (par défaut : gris)
+   */
+  constructor(host, bgColor = "gray") {
     /**
      * Div contenant le panneau
      */
     let elPanel = document.createElement("div");
     elPanel.id = "mySidebar";
-    elPanel.className = "w3-sidebar w3-bar-block w3-dark-grey w3-animate-left";
+    elPanel.className = "w3-sidebar w3-bar-block w3-animate-left";
     elPanel.style.display = "none";
+    elPanel.style.backgroundColor = bgColor;
+
+    this.elPanel = elPanel;
 
     host.appendChild(elPanel);
 
@@ -38,21 +44,31 @@ class Panel {
 
     elPanel.appendChild(elButton);
 
-    // elButton.addEventListener("click", closePanel());
-
-    let openButton = document.getElementById('panel_button');
-
-    console.log(openButton);
+    // Fermeture du panneau quand on clique sur le boutton close
+    elButton.addEventListener("click", () => {
+      this.close();
+    });
   }
 
   /**
-   *
+   * Change la couleur du fond du panneau
+   * @param {string} color Couleur du background du paneau
    */
-  static openPanel() {
-    document.getElementById("mySidebar").style.display = "block";
+  backgroundColor(color = "gray") {
+    this.elPanel.style.backgroundColor = color;
   }
 
-  static closePanel() {
-    document.getElementById("mySidebar").style.display = "none";
+  /**
+   * Ouverture du panneau
+   */
+  open() {
+    this.elPanel.style.display = "block";
+  }
+
+  /**
+   * Fermeture du panneau
+   */
+  close() {
+    this.elPanel.style.display = "none";
   }
 }
