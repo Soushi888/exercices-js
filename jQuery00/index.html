@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>jQuery hide et show</title>
+    <style>
+        #container  table {
+            border-collapse: collapse;
+        }
+
+        #container  tr {
+            height: 200px;
+        }
+
+        #container  td {
+            min-width: 250px;
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #container  div {
+            display :inline-block;
+            width: 200px;
+            height: 150px;
+            background-color: #00c6ec;
+            font-size: 50px;
+        }
+
+        #container  div.active {
+            box-shadow: 5px 5px 20px red;
+        }
+    </style>
+</head>
+<body>
+<h1>jQuery hide et show</h1>
+
+<div id="container">
+    <table>
+        <tr>
+            <td>
+                <div>0</div>
+            </td>
+            <td>
+                <div>1</div>
+            </td>
+            <td>
+                <div>2</div>
+            </td>
+            <td>
+                <div>3</div>
+            </td>
+            <td>
+                <div>4</div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="script/main.js"></script>
+</body>
+</html>
