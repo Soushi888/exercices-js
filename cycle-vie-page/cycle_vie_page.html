@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <title>Events : Cycle vie page</title>
@@ -7,12 +8,13 @@
         * {
             box-sizing: border-box;
         }
+
         img {
-            height: 150px ;
+            height: 150px;
         }
 
         .coteacote {
-            display : inline-block;
+            display: inline-block;
             min-width: 250px;
         }
 
@@ -27,7 +29,7 @@
 
         #status label {
             display: inline-block;
-            width : 250px;
+            width: 250px;
         }
 
         #status input {
@@ -35,6 +37,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Events : Cycle vie page</h1>
@@ -53,26 +56,30 @@
                     Temps écoulé entre les deux sessions : <mark id="temps_ecoule"></mark> secondes
                 </li>
                 <li>
-                    <label for="document.DOMContentLoaded">DOMContentLoaded :</label><input type="checkbox" id="document.DOMContentLoaded"/>
+                    <label for="document.DOMContentLoaded">DOMContentLoaded :</label><input type="checkbox"
+                        id="document.DOMContentLoaded" />
                 </li>
                 <li>
-                    <label for="left_img.load">left_img.load :</label><input type="checkbox" id="left_img.load"/>
+                    <label for="left_img.load">left_img.load :</label><input type="checkbox" id="left_img.load" />
                 </li>
                 <li>
-                    <label for="right_img.load">right_img.load :</label><input type="checkbox" id="right_img.load"/>
+                    <label for="right_img.load">right_img.load :</label><input type="checkbox" id="right_img.load" />
                 </li>
                 <li>
-                    <label for="window.load">window.load :</label><input type="checkbox" id="window.load"/>
+                    <label for="window.load">window.load :</label><input type="checkbox" id="window.load" />
                 </li>
                 <li>
-                    <label for="window.beforeunload">window.beforeunload :</label><input type="checkbox" id="window.beforeunload"/>
+                    <label for="window.beforeunload">window.beforeunload :</label><input type="checkbox"
+                        id="window.beforeunload" />
                 </li>
                 <li>
-                    <label for="window.unload">window.unload (jamais affichable):</label><input type="checkbox" id="window.unload"/>
+                    <label for="window.unload">window.unload (jamais affichable):</label><input type="checkbox"
+                        id="window.unload" />
                 </li>
             </ul>
         </div>
     </main>
     <script src="script/main.js"></script>
 </body>
+
 </html>
