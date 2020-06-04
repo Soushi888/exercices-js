@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="fr">
+    <meta charset="UTF-8">
+    <title>Custom Event Slider</title>
+    <link rel="icon" type="image/png" href="https://source.unsplash.com/random">
+    <style>
+        /* Code du slider sur le site https://www.w3schools.com/howto/howto_js_rangeslider.asp  */
+        .slidecontainer {
+            width: 100px;
+            /* Width of the outside container */
+        }
+
+        /* The slider itself */
+        .slider {
+            -webkit-appearance: none;
+            /* Override default CSS styles */
+            appearance: none;
+            width: 100%;
+            /* Full-width */
+            height: 25px;
+            /* Specified height */
+            background: #d3d3d3;
+            /* Grey background */
+            outline: none;
+            /* Remove outline */
+            opacity: 0.7;
+            /* Set transparency (for mouse-over effects on hover) */
+            -webkit-transition: .2s;
+            /* 0.2 seconds transition on hover */
+            transition: opacity .2s;
+        }
+
+        /* Mouse-over effects */
+        .slider:hover {
+            opacity: 1;
+            /* Fully shown on mouse-over */
+        }
+
+        /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            /* Override default look */
+            appearance: none;
+            width: 25px;
+            /* Set a specific slider handle width */
+            height: 25px;
+            /* Slider handle height */
+            background: #4CAF50;
+            /* Green background */
+            cursor: pointer;
+            /* Cursor on hover */
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            /* Set a specific slider handle width */
+            height: 25px;
+            /* Slider handle height */
+            background: #4CAF50;
+            /* Green background */
+            cursor: pointer;
+            /* Cursor on hover */
+        }
+    </style>
+    <style>
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            height: 500px;
+        }
+
+        main>section {
+            width: 33%;
+            height: 100%;
+            background-color: #EEE;
+        }
+
+        main>section:nth-of-type(2)>div {
+            width: 100%;
+            height: 100%;
+        }
+
+        main>section:nth-of-type(2)>div>div {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-color: rgb(246, 197, 248);
+            margin: 10px;
+            border-radius: 50%;
+        }
+
+        main>section>img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Custom Event Slider</h1>
+        <div class="slidecontainer">
+            <label for="sliderniveau">Changer le niveau</label><input type="range" min="1" max="3" value="2"
+                class="slider" id="sliderniveau" />
+        </div>
+    </header>
+    <main>
+        <section>
+            <p class="jecoute">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie elit ut enim
+                gravida consequat. Aenean at erat ac dui varius vulputate. Vestibulum ut leo et ipsum luctus feugiat.
+                Donec id vulputate dolor, in elementum diam. Phasellus tempor purus at ipsum ullamcorper, vel suscipit
+                velit congue. Sed finibus vestibulum mauris, facilisis congue libero porttitor eu. Praesent in dictum
+                lectus. Aenean porttitor quam odio, at facilisis dolor ultrices ut. Quisque placerat eleifend dolor.
+                Aenean sit amet dolor turpis. Aenean a tellus quis justo venenatis viverra et id neque. Mauris in mollis
+                odio, nec laoreet mi. Praesent dignissim auctor ipsum. Quisque dictum dapibus tellus, sit amet pharetra
+                augue ultrices sagittis.</p>
+        </section>
+        <section>
+            <div class="jecoute"></div>
+        </section>
+        <section>
+            <img class="jecoute" src="https://source.unsplash.com/random" alt="" />
+        </section>
+    </main>
+    <!-- <script src="script/original.js"></script> -->
+    <script src="script/custom_event.js"></script>
+</body>
+
+</html>
