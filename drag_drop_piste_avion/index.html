@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Events : Drag drop plane on runway</title>
+    <style>
+        .plane {
+            width: 150px;
+            text-align: center;
+        }
+
+        #runway {
+            float: right;
+            margin-right : 50px;
+            width: 500px;
+            height: 350px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+            box-shadow: 10px 10px 5px #888888;
+            position: relative;
+            padding-top: 20px;
+            background: url("images/runway.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+        #runway span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Events : Drag drop plane on runway</h1>
+    </header>
+    <main>
+        <img draggable="true" class="plane" src="images/plane1.png" />
+        <img draggable="true" class="plane" src="images/plane2.png" />
+        <img draggable="true" class="plane" src="images/plane3.png" />
+        <img draggable="true" class="plane" src="images/plane4.png" />
+        <div id="runway" />
+    </main>
+    <script src="script/main.js"></script>
+</body>
+
+</html>
