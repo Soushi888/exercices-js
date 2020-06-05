@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Les formulaires</title>
+    <link rel="stylesheet" href="style/main.css" />
+    <link rel="stylesheet" href="style/formulaire.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+<div id="wrapper">
+    <h2>Les formulaires</h2>
+    <div id="contenu">
+        <form id="form_resa" name="form_resa">
+            <div class="field">
+                <label for="nom">Nom:</label>
+                <input name="nom" id="nom" type="text"/>
+                <p class="msg">Le nom doit contenir au moins 1 caractère.</p>
+            </div>
+            <div class="field">
+                <label for="email">Courriel:</label>
+                <input name="email" id="email" type="text"/>
+                <p class="msg">Le courriel n'est pas valide.</p>
+            </div>
+            <div class="field">
+                <label for="date_commande">Date commande:</label>
+                <input type="text" name="date_commande" id="date_commande"/>
+                <p class="msg">La date de commande n'est pas valide.</p>
+            </div>
+            <div class="field">
+                <label for="sexe_h">Homme:</label>
+                <input type="radio" name="sexe" id="sexe_h" value="sexe_h"/>
+                <br/>
+                <label for="sexe_f">Femme:</label>
+                <input type="radio" name="sexe" id="sexe_f" value="sexe_f"/>
+                <p class="msg">Veuillez choisir le sexe.</p>
+            </div>
+            <div class="field">
+                <label for="ville">Ville:</label>
+                <select name="ville" id="ville">
+                    <option value="-1">Choisir...</option>
+                    <option value="mo">Montréal</option>
+                    <option value="qc">Québec</option>
+                    <option value="ga">Gâtineau</option>
+                    <option value="sh">Sherbrooke</option>
+                </select>
+                <p class="msg">Veuillez sélectionner une ville.</p>
+            </div>
+            <div class="field">
+                <label for="sports">Sports:</label>
+                <select name="sports" id="sports" multiple="multiple" size="5">
+                    <option value="foot">Foot</option>
+                    <option value="tennis">Tennis</option>
+                    <option value="danse">Danse</option>
+                    <option value="yoga">Yoga</option>
+                    <option value="canape">Canapé</option>
+                </select>
+                <p class="msg">Veuillez sélectionner au moins deux sports.</p>
+            </div>
+            <div class="field">
+                <label for="commentaire">Commentaire:</label>
+                <textarea rows="10" cols="50" name="commentaire" id="commentaire">Valeur par défaut dans le content de l'élément textarea</textarea>
+                <p class="msg"></p>
+            </div>
+            <div class="field">
+                <label for="accepte">J'accepte les conditions:</label>
+                <input type="checkbox" name="accepte" id="accepte" type="text" value="accepte"/>
+                <p class="msg">Vous devez accepter les conditions d'utilisation pour soumettre le formulaire.</p>
+            </div>
+            <div>
+                <input type="submit" value="Réserver" />
+            </div>
+        </form>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="script/main.js"></script>
+</body>
+</html>

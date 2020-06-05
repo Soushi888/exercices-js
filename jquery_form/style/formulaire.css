@@ -1,0 +1,35 @@
+form div {
+    margin: 0 0 10px 160px;
+}
+
+
+form div label {
+    width: 140px;
+    float: left;
+    text-align: right;
+    margin: 5px 20px 0 -160px;
+}
+
+
+#form_resa .field p.msg{
+    display : none;
+    margin:0;
+    color:red;
+}
+
+#form_resa .field.invalid input{
+    border : 2px solid red;
+}
+
+/* Faire apparaitre le p.msg si le champ est invalide */
+#form_resa .field.invalid p.msg{
+    display : inline-block;
+}
+
+/* Signaler erreur les checkbox  */
+#form_resa .cberror {
+    outline-color : red;
+    outline-style : solid;
+    outline-width : thin;
+}
+
