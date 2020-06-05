@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>jQuery Contenus</title>
+    <style>
+        .costaud {
+            color: #0e199f;
+            font-size: x-large;
+        }
+        .jojo {
+            color: #d40747;
+            font-family: "Courier New", Courier, monospace;
+        }
+        .active {
+            border: 2px solid #ff9634;
+            background-color: #ffe3a6;
+        }
+        #images {
+            position:relative;
+        }
+
+        #images img{
+            position:absolute;
+        }
+
+        #images img:last-of-type{
+            left:128px;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <h1>jQuery Contenus</h1>
+    <nav>
+        <ul>
+            <li><a href="un.html">Un</a></li>
+            <li><a class="active" href="deux.html">Deux</a></li>
+            <li><a href="trois.html">Trois</a></li>
+        </ul>
+    </nav>
+</header>
+
+<h2>Paragraphe</h2>
+<p class="toto">Lorem ipsum dolor sit amet, <strong class="costaud">consectetur adipisicing</strong> elit. Adipisci blanditiis cum debitis, <strong>dolores doloribus ducimus in inventore minus</strong> nisi quisquam. Amet aut <mark>eveniet</mark> id ipsam natus recusandae, repudiandae sequi sit.</p>
+<p class="toto">Lorem ipsum <strong>dolor sit amet</strong>, consectetur adipisicing elit. Adipisci blanditiis cum debitis, <strong>ducimus in inventore minus</strong> nisi quisquam. Amet aut eveniet id ipsam natus recusandae, repudiandae sequi sit.</p>
+<p>Lorem ipsum <strong class="costaud"> in inventore minus</strong> dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis cum debitis, nisi quisquam. Amet aut eveniet id ipsam natus recusandae <em class="costaud">repudiandae sequi</em>sit.</p>
+<h2>Formulaire</h2>
+<form id="enforme">
+    <label for="jquery">jQuery :</label><input id="jquery" name="jquery" type="checkbox"/><br/>
+    <label for="age">Age :</label><input type="range" id="age" name="age" min="0" max="199" /><br/>
+</form>
+
+<h2>Belles images</h2>
+<div id="images">
+    <img src="images/smiley_pas_content.png" alt="Image de smiley-face-icone"/>
+    <img src="images/smiley_epate.png" alt="Image de yahoo-laughing-smiley-emoticon"/>
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+        crossorigin="anonymous"></script>
+<script src="script/main.js"></script>
+</body>
+</html>
