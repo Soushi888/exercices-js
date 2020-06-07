@@ -2,7 +2,7 @@
 
 const MIN_NB_CAR = 1; // Nombre minimum de caractères dans les champs input de type text
 
-let forme_resa = $('#form_resa');
+let form_resa = $('#form_resa');
 console.log(form_resa);
 
 /**
@@ -43,4 +43,7 @@ function valider(event) {
     }
 }
 
-forme_resa.on('submit', valider())
+form_resa.on('submit', valider(evt));
+ 
+let fields = form_resa.find(':input');
+console.log(fields);
