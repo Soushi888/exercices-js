@@ -10,19 +10,43 @@ xhr1.open("GET", URL_POST, true);
 xhr1.addEventListener("load", (evt) => {
   if (xhr1.readyState === XMLHttpRequest.DONE) {
     if (xhr1.status === 200) {
-      console.log("requete1, data reçue :", xhr1.responseText);
       let userId = JSON.parse(xhr1.responseText).userId;
-      console.log(userId);
-     
+      console.log("User Id = " + userId);
+
       let xhr2 = new XMLHttpRequest();
       xhr2.open("GET", URL_USER + userId, true);
+
       xhr2.addEventListener("load", (evt) => {
-         if (xhr2.status === 200) {
-            console.log("requete2, data reçue :", xhr2.responseText);
+        if (xhr2.status === 200) {
+          let userName = JSON.parse(xhr2.responseText).name;
+          console.log('User name = ' + userName);
         }
+      });
+
       xhr2.send(null);
-    });
     }
+  }
 });
 
 xhr1.send(null);
+
+if (window.fetch) {
+  fetch(URL_POST)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    console.log('fetch : première requête, data reçue :', data);
+    let userId = data.id;
+    console.log(userId);
+    return fetch(URL_USER + userId)
+  })
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    console.log('fetch : deuxième requête, data reçue :', data);
+    let userName = data.name;
+    console.log(userName);
+  })
+}
