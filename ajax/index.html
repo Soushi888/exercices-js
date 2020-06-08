@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Météo</title>
+</head>
+
+<body>
+    <h1>Météo</h1>
+    <label>Vore nom :
+        <input type="text" id="ajaxTextbox" />
+    </label>
+    <span id="ajaxButton" style="cursor: pointer; text-decoration: underline">
+        Lancer une requête
+    </span>
+
+    <script>
+
+
+
+        (function () {
+            var httpRequest;
+            document.getElementById("ajaxButton").addEventListener('click', () => {
+                document.getElementById("ajaxButton").onclick = function () {
+                    var userName = document.getElementById("ajaxTextbox").value;
+                    makeRequest('demo.php', userName);
+                };
+            });
+
+            function makeRequest(url, userName) {
+                httpRequest = new XMLHttpRequest();
+
+                if (!httpRequest) {
+                    alert('Abandon :( Impossible de créer une instance de XMLHTTP');
+                    return false;
+                }
+                httpRequest.onreadystatechange = alertContents;
+                httpRequest.open('POST', url);
+                httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                httpRequest.send('userName=' + encodeURIComponent(userName));
+            }
+
+            function alertContents() {
+                try {
+                    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                        if (httpRequest.status === 200) {
+                            // let elDiv = document.createElement('div');
+                            // elDiv.innerHTML = httpRequest.responseText;
+                            // document.body.appendChild(elDiv);
+                            var response = JSON.parse(httpRequest.responseText);
+                            alert(response.computedString)
+                        } else {
+                            alert("Un problème est survenu au cours de la requête.");
+                        }
+                    }
+                }
+                catch (e) {
+                    alert("Une exception s’est produite : " + e.description);
+                }
+            }
+        })();
+    </script>
+</body>
+
+</html>
