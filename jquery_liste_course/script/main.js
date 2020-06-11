@@ -6,29 +6,35 @@ input.val(""); // Vide le champs input au rechargement de la page
 let ul = $("div ul"); // Liste
 let ul_content = []; // Contenu de la liste (pour vérifier les doublons);
 
+function saisir(valeur_saisie) {
+  $("li").each((index, element) => {
+    // Si un élément est selectionné et que ce qui est saisi dans le champs n'est pas un doublon, change la valeure de L'élément selectionné.
+    if (
+      $(element).hasClass("rectification") &&
+      $.inArray(valeur_saisie.toLowerCase(), ul_content) == -1
+    ) {
+      $(element).text(valeur_saisie);
+      return;
+    }
+  });
+
+  // Vérifie si l'élément saisie n'est pas déjà présent dans la liste.
+  if ($.inArray(valeur_saisie.toLowerCase(), ul_content) == -1) {
+    ul.append("<li>" + valeur_saisie + "</li>");
+    ul_content.push(valeur_saisie.toLowerCase());
+  } else {
+    console.log("doublon !");
+  }
+
+  input.val(""); // Remise à 0 du champs de saisie
+}
+
 input.on("keydown", (evt) => {
   // Si la touche appuyée est Enter et que input contient au moins 1 caractère
   if (evt.key == "Enter" && input.val().trim().length >= 1) {
     let valeur_saisie = input.val().trim();
-    // Vérifie si l'élément saisie n'est pas déjà présent dans la liste.
 
-    $("li").each((index, element) => {
-      if (
-        $(element).hasClass("rectification") &&
-        $.inArray(valeur_saisie.toLowerCase(), ul_content) == -1
-      ) {
-        $(element).text(valeur_saisie);
-      }
-    });
-
-    if ($.inArray(valeur_saisie.toLowerCase(), ul_content) !== -1) {
-      ul.append("<li>" + valeur_saisie + "</li>");
-      ul_content.push(valeur_saisie.toLowerCase());
-    } else {
-      console.log("doublon !");
-    }
-
-    input.val(""); // Remise à 0 du champs de saisie
+    saisir(valeur_saisie);
   }
 });
 
