@@ -1,0 +1,13 @@
+#liste {
+  display: flex;
+  list-style-type: none;
+}
+
+#liste li {
+  padding: 10px;
+}
+
+.rectification {
+  border: 2px red dashed;
+  display: inline-block;
+}
