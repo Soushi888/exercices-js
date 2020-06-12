@@ -6,65 +6,49 @@ input.val(""); // Vide le champs input au rechargement de la page
 let ul = $("div ul"); // Liste
 let ul_content = []; // Contenu de la liste (pour vérifier les doublons);
 
-// Selection d'un item de la liste à modifier.
-let rectification = ul.on("click", "li", (evt) => {
+ul.on("click", "li", (evt) => {
+  // Selection d'un item de la liste à modifier.
   if ($(event.target).hasClass("rectification")) {
     $(event.target).removeClass("rectification");
-    return (rectification = false);
+    input.val('');
   } else {
     $("li").removeClass("rectification");
     $(event.target).addClass("rectification");
-    return (rectification = true);
+    input.val(event.target.textContent);
+  }
+
+  // Supression d'un item lorsqu'on ctrl + clique dessus
+  if (evt.ctrlKey) {
+    console.log("remove !");
+    $(event.target).remove();
+    input.val('');
   }
 });
 
 input.on("keydown", (evt) => {
-  // Si la touche appuyée est Enter et que input contient au moins 1 caractère
+  // Si la touche appuyée est Enter et que le champs de saisie contient au moins 1 caractère
   if (evt.key == "Enter" && input.val().trim().length >= 1) {
+    let rectification = $(".rectification"); // Item slectionné pour modification
     let valeur_saisie = input.val().trim();
 
-    // Vérifie si l'item saisie n'est pas déjà présent dans la liste.
     if (
-      $.inArray(valeur_saisie.toLowerCase(), ul_content) == -1 &&
-      rectification === false
+      // Vérifie si un item est selectionné pour modification et s'il n'est pas déjà présent dans la liste.
+      rectification.length > 0 &&
+      $.inArray(valeur_saisie.toLowerCase(), ul_content) == -1
     ) {
-      ajouterItem(valeur_saisie); // Ajoute l'item
+      // Modifie le contenu de l'item
+      $(rectification[0]).text(valeur_saisie);
+      $(rectification[0]).removeClass("rectification");
     } else if (
-      $.inArray(valeur_saisie.toLowerCase(), ul_content) == -1 &&
-      rectification === true
+      // Sinon, vérifie tout de même que l'item n'est pas déjà présent avant de l'ajouter
+      $.inArray(valeur_saisie.toLowerCase(), ul_content) == -1
     ) {
-      modifierItem();
+      ul.append("<li>" + valeur_saisie + "</li>");
+      ul_content.push(valeur_saisie.toLowerCase());
+    } else {
+      console.log("doublon !"); // Sinon, indique que l'item saisie est un doublon.
     }
-    // else {
-    //   console.log("doublon !");
-    // }
 
     input.val(""); // Remise à 0 du champs de saisie
   }
 });
-
-/**
- * Ajoute un item à la liste.
- * @param {string} item
- */
-function ajouterItem(item) {
-  ul.append("<li>" + item + "</li>");
-  ul_content.push(item.toLowerCase());
-}
-
-/**
- * Si un item est selectionné et que ce qui est saisi dans le champs n'est pas un doublon, change la valeure de L'item selectionné.
- *
- * @param {string} ancien_item
- * @param {string} nouvel_item
- */
-function modifierItem(ancien_item, nouvel_item) {
-  $("li").each((index, element) => {
-    if (
-      $(element).hasClass("rectification") &&
-      $.inArray(valeur_saisie.toLowerCase(), ul_content) == -1
-    ) {
-      $(element).text(valeur_saisie);
-    }
-  });
-}

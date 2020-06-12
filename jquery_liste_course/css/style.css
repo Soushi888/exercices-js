@@ -1,13 +1,25 @@
 #liste {
-  display: flex;
-  list-style-type: none;
+  width: 800px;
+}
+
+#liste ul {
+  padding: 0;
+  margin: 0;
 }
 
 #liste li {
   padding: 10px;
+  margin: 20px;
+  text-align: center;
+  background-color: rgb(0, 116, 116);
+  color: white;
+  border-radius: 15px;
+  list-style-type: none;
+  display: inline-block;
+  width: 200px;
 }
 
 .rectification {
-  border: 2px red dashed;
-  display: inline-block;
+  border: 2px red solid;
+  /* display: ; */
 }
