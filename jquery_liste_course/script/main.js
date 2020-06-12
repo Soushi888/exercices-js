@@ -6,11 +6,21 @@ input.val(""); // Vide le champs input au rechargement de la page
 let ul = $("div ul"); // Liste
 let ul_content = []; // Contenu de la liste (pour vérifier les doublons);
 
+/**
+ * Retire les tags HTML d'un string
+ * @param {string} str
+ */
+function strip_html_tags(str) {
+  if (str === null || str === "") return false;
+  else str = str.toString();
+  return str.replace(/<[^>]*>/g, "");
+}
+
+// Selection d'un item de la liste à modifier.
 ul.on("click", "li", (evt) => {
-  // Selection d'un item de la liste à modifier.
   if ($(event.target).hasClass("rectification")) {
     $(event.target).removeClass("rectification");
-    input.val('');
+    input.val("");
   } else {
     $("li").removeClass("rectification");
     $(event.target).addClass("rectification");
@@ -21,7 +31,7 @@ ul.on("click", "li", (evt) => {
   if (evt.ctrlKey) {
     console.log("remove !");
     $(event.target).remove();
-    input.val('');
+    input.val("");
   }
 });
 
@@ -29,8 +39,12 @@ input.on("keydown", (evt) => {
   // Si la touche appuyée est Enter et que le champs de saisie contient au moins 1 caractère
   if (evt.key == "Enter" && input.val().trim().length >= 1) {
     let rectification = $(".rectification"); // Item slectionné pour modification
+
     let valeur_saisie = input.val().trim();
-    valeur_saisie = valeur_saisie.substr(0,1).toUpperCase()+valeur_saisie.substr(1);
+    valeur_saisie = strip_html_tags(valeur_saisie);
+    valeur_saisie =
+      valeur_saisie.substr(0, 1).toUpperCase() + valeur_saisie.substr(1); // Met la première lettre de la valeure saisie en majuscule
+
     if (
       // Vérifie si un item est selectionné pour modification et s'il n'est pas déjà présent dans la liste.
       rectification.length > 0 &&
