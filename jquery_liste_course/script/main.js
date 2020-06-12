@@ -30,7 +30,7 @@ input.on("keydown", (evt) => {
   if (evt.key == "Enter" && input.val().trim().length >= 1) {
     let rectification = $(".rectification"); // Item slectionné pour modification
     let valeur_saisie = input.val().trim();
-
+    valeur_saisie = valeur_saisie.substr(0,1).toUpperCase()+valeur_saisie.substr(1);
     if (
       // Vérifie si un item est selectionné pour modification et s'il n'est pas déjà présent dans la liste.
       rectification.length > 0 &&
