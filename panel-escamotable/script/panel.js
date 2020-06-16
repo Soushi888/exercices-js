@@ -19,7 +19,7 @@ class Panel {
     elPanel.style.display = "none";
     elPanel.style.backgroundColor = bgColor;
 
-    this.elPanel = elPanel;
+    this._elPanel = elPanel;
 
     host.appendChild(elPanel);
 
@@ -55,20 +55,20 @@ class Panel {
    * @param {string} color Couleur du background du paneau
    */
   backgroundColor(color = "gray") {
-    this.elPanel.style.backgroundColor = color;
+    this._elPanel.style.backgroundColor = color;
   }
 
   /**
    * Ouverture du panneau
    */
   open() {
-    this.elPanel.style.display = "block";
+    this._elPanel.style.display = "block";
   }
 
   /**
    * Fermeture du panneau
    */
   close() {
-    this.elPanel.style.display = "none";
+    this._elPanel.style.display = "none";
   }
 }
