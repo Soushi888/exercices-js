@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:,">
+    <title>Currency converter with exchangeratesapi.io</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        html,
+        input,
+        select, button {
+            font-size: 20px;
+            line-height: 2;
+            height: 2em;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        input {
+            width : 5em;
+        }
+
+        .word {
+            margin:auto 5px;
+        }
+
+        .result {
+            color:blue;
+            font-size: x-large;
+        }
+
+        div#container {
+            background-color: ivory;
+            margin:0 auto;
+            padding:20px;
+            width: 800px;
+            background-color: rgba(247, 207, 98, 0.5);
+            border:2px solid brown;
+        }
+
+        div#container img {
+            display: none;
+        }
+
+        #output {
+            height: 2rem;
+            vertical-align: middle;
+            line-height: 2em;
+            margin: 10px;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Currency converter with <a href="https://exchangeratesapi.io/">exchangeratesapi.io</a></h1>
+        <p>Ajax Example : <a href="https://api.exchangeratesapi.io/latest?base=USD&symbols=EUR">usd to eur rate</a></p>
+    </header>
+    <main>
+        <div id="container">
+            <input type="text" value="1" id="from_amount" class="amount" />
+            <select name="from_cur" id="from_cur" class="currency">
+                <option value="cad" selected>cad</option>
+                <option value="eur">eur</option>
+                <option value="usd">usd</option>
+                <option value="jpy">jpy</option>
+            </select>
+            <span class="word">en</span>
+            <select name="to_cur" id="to_cur" class="currency">
+                <option value="cad">cad</option>
+                <option value="eur" selected>eur</option>
+                <option value="usd">usd</option>
+                <option value="jpy">jpy</option>
+            </select>
+            <button id="calculate">Calculer</button>
+            <span id="to_amount" class="amount result"></span>
+            (m.a.j. du <span id="date" class="result"></span>)
+            <img src="images/ajax-loader.gif" />
+        </div>
+    </main>
+    <script src="script/main.js" defer></script>
+</body>
+
+</html>
