@@ -50,74 +50,35 @@ const OW_API = {
   key: "&APPID=d372021858e26c181fc642ca0f0dbd18",
 };
 
-async function getVisitorCity() {
-  let ip = await fetch("https://api.ipify.org?format=json")
-    .then((resultat) => resultat.json())
-    .then((json) => {
-      console.log("IP : " + json.ip);
-      return json.ip;
-    });
-
-  // access key pour api.ipstack
-  let access_key = "e4e6cacb338614447698c31a63d3ffbc";
-
-  //2 Récupérer de la localisation grace a l'adresse recupérer plus haut
-  ville = await fetch(
-    "http://api.ipstack.com/" + ip + "?access_key=" + access_key
-  )
-    .then((response) => response.json())
-    .finally((data) => {
-      console.log("Ville du visiteur : " + JSON.stringify(data.city));
-    });
-}
-
-// getVisitorCity();
-let visitorCity = getVisitorCity();
-
-// let visitorCity = $.getJSON(
-//   "http://www.geoplugin.net/json.gp?jsoncallback=?",
-//   (response) => {
-//     //   console.log(JSON.stringify(data, null, 2));
-//     return response;
-//   }
-// ).then((data) => {
-//   // console.log(data);
-//   // console.log(data.geoplugin_city);
-//   return data;
-// });
-// console.log("Ville du visiteur : " + getVisitorCity());
-
 /**
- * Promesse AJAX asynchrone vers l'API de openweather pour récurépérer la météo actuelle d'une région à partire de sa latitude et sa longitude.
+ * Promesse jQuery AJAX vers l'API de openweather pour récurépérer la météo actuelle d'une région à partire de sa latitude et sa longitude.
  * @param {int} lat Latitude
  * @param {int} lon Longitude
  */
-async function getWeatherAsync(lat, lon) {
-  let response = await fetch(
+async function getWeather(lat, lon) {
+  let data = $.get(
     `${OW_API.base_api_url}weather?lat=${lat}&lon=${lon}${OW_API.key}`
-  );
-  let data = await response.json();
+  ).then((data) => data);
 
   return data;
 }
 
 /**
- * Promesse AJAX asynchrone vers l'API de openweather pour récurépérer la météo sur 5 jours d'un lieu à partire de sa latitude et de sa longitude.
+ * Promesse jQuery AJAX vers l'API de openweather pour récurépérer la météo sur 5 jours d'un lieu à partire de sa latitude et de sa longitude.
  * @param {int} lat Latitude
  * @param {int} lon Longitude
  */
-async function getForecastAsync(lat, lon) {
-  let response = await fetch(
+async function getForecast(lat, lon) {
+  let data = $.get(
     `${OW_API.base_api_url}forecast?lat=${lat}&lon=${lon}${OW_API.key}`
-  );
-  let data = await response.json();
+  ).then((data) => data);
 
   return data;
 }
 
-getWeatherAsync(MONTREAL.lat, MONTREAL.lon).then((data) => console.log(data));
+getWeather(MONTREAL.lat, MONTREAL.lon).then((data) => console.log(data));
 
-getWeatherAsync(MONTREAL.lat, MONTREAL.lon).then((data) => {
+getWeather(MONTREAL.lat, MONTREAL.lon).then((data) => {
   console.log(`Temp. en K° : ${data.main.temp}`);
   let tempCelsus = CONV.k_a_c(data.main.temp);
   console.log(`Temp. en C° : ${tempCelsus}`);
@@ -131,11 +92,11 @@ getWeatherAsync(MONTREAL.lat, MONTREAL.lon).then((data) => {
   let icone = `${OW_API.base_icon_url}${data.weather[0].icon}.png`;
   $(".icone .val").attr("src", icone);
 
-  getForecastAsync(MONTREAL.lat, MONTREAL.lon).then((data) =>
+  getForecast(MONTREAL.lat, MONTREAL.lon).then((data) =>
     console.log(data)
   );
 
-  getForecastAsync(MONTREAL.lat, MONTREAL.lon).then((data) => {
+  getForecast(MONTREAL.lat, MONTREAL.lon).then((data) => {
     console.log(`Ville : ${data.city.name}`);
     $("#ville").html(data.city.name);
 
