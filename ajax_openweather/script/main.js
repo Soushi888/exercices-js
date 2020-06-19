@@ -91,18 +91,67 @@ getWeather(MONTREAL.lat, MONTREAL.lon).then((data) => {
   console.log(`Icone : ${data.weather[0].icon}`);
   let icone = `${OW_API.base_icon_url}${data.weather[0].icon}.png`;
   $(".icone .val").attr("src", icone);
+});
 
-  getForecast(MONTREAL.lat, MONTREAL.lon).then((data) =>
-    console.log(data)
-  );
+getForecast(MONTREAL.lat, MONTREAL.lon).then((data) => console.log(data));
 
-  getForecast(MONTREAL.lat, MONTREAL.lon).then((data) => {
-    console.log(`Ville : ${data.city.name}`);
-    $("#ville").html(data.city.name);
+getForecast(MONTREAL.lat, MONTREAL.lon).then((data) => {
+  console.log(`Ville : ${data.city.name}`);
+  $("#ville").html(data.city.name);
 
-    console.group(`Coordonées de ${data.city.name}`);
-    console.log(`latitude : ${data.city.coord.lat}°`);
-    console.log(`longitude ${data.city.coord.lon}°`);
-    console.groupEnd();
-  });
+  console.group(`Coordonées de ${data.city.name}`);
+  console.log(`latitude : ${data.city.coord.lat}°`);
+  console.log(`longitude ${data.city.coord.lon}°`);
+  console.groupEnd();
+
+  $("#info_panel ul")
+    .append(`<li>Ville : ${data.city.name}</li>`)
+    .append(`<li>Latitude : ${data.city.coord.lat}</li>`)
+    .append(`<li>Longitude : ${data.city.coord.lon}</li>`);
+
+  console.log(data.list);
+
+  console.log($(".modele"));
+
+  for (let i in data.list) {
+    let tr = $(".modele").clone();
+    tr.removeClass("modele");
+    tr.data("index", i);
+    if (tr.data().index == i) {
+      let date = new Date(data.list[i].dt_txt);
+      let tdHeure = $("tbody").append(tr);
+    }
+    // let date = new Date(data.list[i].dt_txt);
+    // console.log(date.getHours() + "h");
+    // let tdHeure = $("tbody").append(tr);
+
+    // console.log(tdHeure);
+
+    // let tdHeure = tr.find(".heure").text(date.getHours());
+    //   .after(`<td>${CONV.k_a_c(data.list[i].main.temp)} °C}</td>`);
+  }
+
+  console.groupCollapsed("Prévisions");
+  for (let i in data.list) {
+    console.log(data.list[i].dt);
+  }
+  console.groupEnd();
+
+  console.groupCollapsed("Températures");
+  for (let i in data.list) {
+    console.log(CONV.k_a_c(data.list[i].main.temp) + " °C");
+  }
+  console.groupEnd();
+
+  console.groupCollapsed("Descriptions");
+  for (let i in data.list) {
+    console.log(data.list[i].weather[0].description);
+  }
+  console.groupEnd();
+
+  console.groupCollapsed("icones");
+  for (let i in data.list) {
+    console.log(data.list[i].weather[0].icon);
+  }
+  console.groupEnd();
 });
