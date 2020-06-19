@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <title>Ajax API Open Weather</title>
     <style>
         tr.modele {
@@ -9,6 +10,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Ajax API Open Weather</h1>
@@ -16,12 +18,13 @@
         <ul>
             <li><a href="https://openweathermap.org/api">Accueil API</a></li>
             <li><a href="https://openweathermap.org/forecast5#JSON">Prévisions 5 jours</a></li>
-            <li><a href="https://openweathermap.org/weather-conditions">Conditions météo (icones et description)</a></li>
+            <li><a href="https://openweathermap.org/weather-conditions">Conditions météo (icones et description)</a>
+            </li>
         </ul>
     </header>
     <main>
         <section id="actuellement">
-            <h2>Météo actuelle</h2>
+            <h2>Météo actuelle à <span id="ville"></span></h2>
             <p class="temperature">Il fait <span class="val"></span></p>
             <p class="description">Le ciel est <span class="val"></span></p>
             <p class="icone">Icône : <img src="" alt="" class="val" /></p>
@@ -29,13 +32,18 @@
         <section id="previsions">
             <h2>Prévisions Météo</h2>
             <div id="info_panel">
-                <ul >
+                <ul>
                 </ul>
             </div>
             <div id="data_panel">
                 <table id="tb_prevision">
                     <thead>
-                        <tr><th>Heure</th><th>Temp</th><th>Icône</th><th>Desc.</th></tr>
+                        <tr>
+                            <th>Heure</th>
+                            <th>Temp</th>
+                            <th>Icône</th>
+                            <th>Desc.</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr class="modele">
@@ -49,6 +57,11 @@
             </div>
         </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="script/main.js"></script>
+
 </body>
+
 </html>
