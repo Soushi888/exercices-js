@@ -76,9 +76,9 @@ async function getForecast(lat, lon) {
   return data;
 }
 
-getWeather(MONTREAL.lat, MONTREAL.lon).then((data) => console.log(data));
-
 getWeather(MONTREAL.lat, MONTREAL.lon).then((data) => {
+  console.log(data)
+
   console.log(`Temp. en K° : ${data.main.temp}`);
   let tempCelsus = CONV.k_a_c(data.main.temp);
   console.log(`Temp. en C° : ${tempCelsus}`);
@@ -93,9 +93,9 @@ getWeather(MONTREAL.lat, MONTREAL.lon).then((data) => {
   $(".icone .val").attr("src", icone);
 });
 
-getForecast(MONTREAL.lat, MONTREAL.lon).then((data) => console.log(data));
-
 getForecast(MONTREAL.lat, MONTREAL.lon).then((data) => {
+  console.log(data));
+
   console.log(`Ville : ${data.city.name}`);
   $("#ville").html(data.city.name);
 
@@ -113,16 +113,33 @@ getForecast(MONTREAL.lat, MONTREAL.lon).then((data) => {
 
   console.log($(".modele"));
 
+  // Pour tout les éléments de la liste du Forecast
   for (let i in data.list) {
+    // Création d'une nouvelle ligne
     let tr = $(".modele").clone();
     tr.removeClass("modele");
-    tr.data("index", i);
-    tr = $("tbody").append(tr);
-    let td = tr.children();
-    let heure = new Date(data.list[i].dt);
+    $("tbody").append(tr);
+
+    // Insertion de l'heure
+    let tdHeure = $(".heure");
+    let heure = new Date(data.list[i].dt_txt);
     heure = heure.getHours();
-    td.find('.heure').text(heure + "h");
-    
+    $(tdHeure[i]).text(heure + 'h');
+
+    // Insertion de la température
+    let tdTemp = $(".temperature");
+    let temperature = CONV.k_a_c(data.list[i].main.temp) + " °C";
+    $(tdTemp[i]).text(temperature);
+
+    // Insertion de l'icone
+    let imgIcone = $(".icone img");
+    let icone = `${OW_API.base_icon_url}${data.list[i].weather[0].icon}.png`;
+    $(imgIcone[i]).attr("src", icone);
+
+    // Insertion de la description
+    let tdDesc = $(".description");
+    let description = data.list[i].weather[0].description;
+    $(tdDesc[i]).text(description);
 }
 
   console.groupCollapsed("Prévisions");
