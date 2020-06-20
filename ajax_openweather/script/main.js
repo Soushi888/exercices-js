@@ -117,41 +117,28 @@ getForecast(MONTREAL.lat, MONTREAL.lon).then((data) => {
     let tr = $(".modele").clone();
     tr.removeClass("modele");
     tr.data("index", i);
-    if (tr.data().index == i) {
-      let date = new Date(data.list[i].dt_txt);
-      let tdHeure = $("tbody").append(tr);
-    }
-    // let date = new Date(data.list[i].dt_txt);
-    // console.log(date.getHours() + "h");
-    // let tdHeure = $("tbody").append(tr);
-
-    // console.log(tdHeure);
-
-    // let tdHeure = tr.find(".heure").text(date.getHours());
-    //   .after(`<td>${CONV.k_a_c(data.list[i].main.temp)} °C}</td>`);
-  }
+    tr = $("tbody").append(tr);
+    let td = tr.children();
+    let heure = new Date(data.list[i].dt);
+    heure = heure.getHours();
+    td.find('.heure').text(heure + "h");
+    
+}
 
   console.groupCollapsed("Prévisions");
-  for (let i in data.list) {
-    console.log(data.list[i].dt);
-  }
+  for (let i in data.list) console.log(data.list[i].dt);
   console.groupEnd();
 
   console.groupCollapsed("Températures");
-  for (let i in data.list) {
+  for (let i in data.list)
     console.log(CONV.k_a_c(data.list[i].main.temp) + " °C");
-  }
   console.groupEnd();
 
   console.groupCollapsed("Descriptions");
-  for (let i in data.list) {
-    console.log(data.list[i].weather[0].description);
-  }
+  for (let i in data.list) console.log(data.list[i].weather[0].description);
   console.groupEnd();
 
   console.groupCollapsed("icones");
-  for (let i in data.list) {
-    console.log(data.list[i].weather[0].icon);
-  }
+  for (let i in data.list) console.log(data.list[i].weather[0].icon);
   console.groupEnd();
 });
