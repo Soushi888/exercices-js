@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Tabs - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      font-size: 100%;
+    }
+
+    #wrapper {
+      font-size: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    section {
+      display: inline-block;
+      vertical-align: top;
+      font-size: 1rem;
+      width: 50%;
+      height: 50%;
+      padding: 10px;
+      background-color: beige;
+    }
+
+    #tabs div {
+      height: 100%;
+    }
+
+    /* Sliders */
+    #eq > span {
+      height:120px; float:left; margin:15px
+    }
+
+    #tesWidgets {
+      font-family: 'Indie Flower', cursive;
+      font-size: 3rem;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    // Tabs
+    $(function () {
+      $("#tabs").tabs();
+    });
+    // Dialogs
+    $(function () {
+      $("#dialog1").dialog({
+        appendTo: "#dialogs",
+        position: {
+          my: "left center",
+          at: "left center",
+          of: "#dialogs"
+        }
+      }).parent().draggable({
+        containment: '#dialogs'
+      });
+      $("#dialog2").dialog({
+        appendTo: "#dialogs",
+        position: {
+          my: "right center",
+          at: "right center",
+          of: "#dialogs"
+        }
+      }).parent().draggable({
+        containment: '#dialogs'
+      });
+    });
+    // Sliders
+    $(function () {
+      // setup master volume
+      $("#master").slider({
+        value: 60,
+        orientation: "horizontal",
+        range: "min",
+        animate: true
+      });
+      // setup graphic EQ
+      $("#eq > span").each(function () {
+        // read initial values from markup and remove that
+        var value = parseInt($(this).text(), 10);
+        $(this).empty().slider({
+          value: value,
+          range: "min",
+          animate: true,
+          orientation: "vertical"
+        });
+      });
+    });
+  </script>
+  <!-- <script src="script/App.js" defer></script> -->
+</head>
+<body>
+  <div id="wrapper">
+    <section>
+      <div id="tabs">
+        <ul>
+          <li><a href="#tabs-1">Premier Onglet</a></li>
+          <li><a href="#tabs-2">Second Onglet</a></li>
+          <li><a href="#tabs-3">Troisième Onglet</a></li>
+        </ul>
+        <div id="tabs-1">
+          <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin
+            mi
+            sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus
+            auctor
+            risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam
+            sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius
+            sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+        </div>
+        <div id="tabs-2">
+          <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc.
+            Duis
+            scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut
+            tempus
+            eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam.
+            Praesent
+            in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel
+            metus.
+            Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
+            pellentesque
+            pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et
+            purus.
+          </p>
+        </div>
+        <div id="tabs-3">
+          <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula
+            accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti
+            sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel
+            enim
+            commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec,
+            feugiat nec, luctus a, lacus.</p>
+        </div>
+      </div>
+    </section>
+    <section id="dialogs">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum amet quaerat accusamus dolorum
+      eligendi
+      cum! Ipsam ipsum nulla delectus rerum amet tenetur quia, explicabo culpa cumque animi voluptates expedita
+      incidunt?
+      <div class="dialog" id="dialog1" title="Première boite">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt cum veniam et quas. Dignissimos commodi
+          optio cupiditate vel ad vitae?</p>
+      </div>
+      <div class="dialog" id="dialog2" title="Seconde boite">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam praesentium cupiditate, distinctio quibusdam
+          incidunt nemo?</p>
+      </div>
+    </section>
+    <section id="sliders">
+      <p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+        <span class="ui-icon ui-icon-volume-on" style="float:left; margin:-2px 5px 0 0;"></span>
+        Master volume
+      </p>
+
+      <div id="master" style="width:260px; margin:15px;"></div>
+
+      <p class="ui-state-default ui-corner-all" style="padding:4px;margin-top:4em;">
+        <span class="ui-icon ui-icon-signal" style="float:left; margin:-2px 5px 0 0;"></span>
+        Graphic EQ
+      </p>
+
+      <div id="eq">
+        <span>88</span>
+        <span>77</span>
+        <span>55</span>
+        <span>33</span>
+        <span>40</span>
+        <span>45</span>
+        <span>70</span>
+      </div>
+    </section>
+    <section id="tesWidgets">Ton(Tes) propre(s) élément(s) ici</section>
+  </div>
+
+
+</body>
+
+</html>
