@@ -30,9 +30,6 @@ function enregisterEtat() {
       },
     })
   );
-
-  let etat = localStorage.getItem("user_board_storage");
-  console.log(JSON.parse(etat));
 }
 
 /**
