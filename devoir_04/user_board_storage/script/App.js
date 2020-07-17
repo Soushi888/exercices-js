@@ -1,24 +1,25 @@
 "use strict";
-let no_tabs, pos_boite_1, pos_boite_2, master, eq;
+let tab, pos_boite_1, pos_boite_2, master, eq;
 /**
  * Enregistre l'état du tableau dans le localStorage
  */
 function enregisterEtat() {
-  no_tabs = $("#tabs").tabs("option", "active");
+  tab = $("#tabs").tabs("option", "active");
 
   pos_boite_1 = $("#dialog1").parent().offset();
   pos_boite_2 = $("#dialog2").parent().offset();
 
   master = $("#master").slider("option", "value");
-  eq = $("#eq > span").each(function () {
-    $(this).slider("option", "value");
+  eq = [];
+  $("#eq > span").each(function () {
+    eq.push($(this).slider("value"));
   });
 
   localStorage.setItem(
     "user_board_storage",
     JSON.stringify({
       tabs: {
-        active: no_tabs,
+        active: tab,
       },
       dialog: {
         pos1: pos_boite_1,
@@ -43,7 +44,9 @@ function lireEtat() {
   $("#dialog2").parent().offset(etat.dialog.pos2);
   $("#master").slider("option", "value", etat.sliders.master);
   $("#eq > span").each((val, index) => {
-    $("#eq > span").eq(index).slider("option", "value", etat.sliders.eq.index);
+    eq = $("#eq > span")[val];
+    console.log(eq);
+    $(eq).slider("value", etat.sliders.eq[val]);
   });
 }
 
