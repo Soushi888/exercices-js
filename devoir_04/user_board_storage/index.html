@@ -52,6 +52,16 @@
       font-family: 'Indie Flower', cursive;
       font-size: 3rem;
     }
+
+    #tesWidgets p {
+      font-size: 1.5rem;
+    }
+
+    #label {
+      display: block;
+      color: blueviolet;
+      font-style: italic;
+    }
   </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -187,7 +197,10 @@
         <span>70</span>
       </div>
     </section>
-    <section id="tesWidgets">Ton(Tes) propre(s) élément(s) ici</section>
+    <section id="tesWidgets">Ton(Tes) propre(s) élément(s)
+      <p id="label">choisissez une date</p>
+      <p>Date: <input type="date" id="datepicker"> <span id="semaine"></span></p>
+    </section>
   </div>
 
 </body>
