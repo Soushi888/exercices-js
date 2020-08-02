@@ -41,41 +41,30 @@ Date.prototype.getWeek = function (dowOffset) {
 
 /**
  * Si le nombre donné en paramètre est inclusivement compris entre 1 et 9, ajoute un zéro devant
- * @param {int} number 
+ * @param {int} number
  * @returns {int}
  */
 function addZero(number) {
   switch (number) {
     case 1:
-      number = "01";
-      break;
+      return "01";
     case 2:
-      number = "02";
-      break;
+      return "02";
     case 3:
-      number = "03";
-      break;
+      return "03";
     case 4:
-      number = "04";
-      break;
+      return "04";
     case 5:
-      number = "05";
-      break;
+      return "05";
     case 6:
-      number = "06";
-      break;
+      return "06";
     case 7:
-      number = "07";
-      break;
+      return "07";
     case 8:
-      number = "08";
-      break;
+      return "08";
     case 9:
-      number = "09";
-      break;
+      return "09";
   }
-
-  return number;
 }
 
 let tab, pos_boite_1, pos_boite_2, master, eq, day, month, date;
@@ -137,15 +126,12 @@ function lireEtat() {
     eq = $("#eq > span")[val];
     $(eq).slider("value", etat.sliders.eq[val]);
   });
-  
+
   date = new Date(etat.date);
   month = addZero(date.getMonth() + 1);
   day = addZero(date.getDate() + 1);
 
-  $("#datepicker").attr(
-    "value",
-    `${date.getFullYear()}-${month}-${day}`
-  );
+  $("#datepicker").attr("value", `${date.getFullYear()}-${month}-${day}`);
   $("#semaine").text("semaine : " + new Date(etat.date).getWeek());
 }
 
